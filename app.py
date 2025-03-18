@@ -2,11 +2,14 @@ from flask import Flask, request, jsonify
 import requests  # For API calls
 import openai  # For AI summarization
 import json  # For formatting transaction data
+import os
 
 # Set your API Key (Replace with actual Move AI or OpenAI API Key)
 openai.api_key = "your-move-ai-or-openai-key"
 
 app = Flask(__name__)
+port = int(os.environ.get("PORT", 10000))  # Use Render's PORT or default to 10000
+app.run(host="0.0.0.0", port=port, debug=True)
 
 def fetch_transactions(wallet_address):
     """
